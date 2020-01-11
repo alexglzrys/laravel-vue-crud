@@ -15,6 +15,7 @@ window.Vue = require("vue");
  *      window.library = require('library')
  *
  */
+window.toastr = require("toastr");
 
 /**
  * The following block of code may be used to automatically register your
@@ -65,10 +66,14 @@ const app = new Vue({
         deleteTask(task) {
             const URL = `/tasks/${task.id}`;
             axios.delete(URL).then(response => {
-                console.log(response.data.message);
                 // Recuperar nuevamente todas las tareas registradas en el backend para mostrarlas en la vista.
                 // En caso contrario, el usuario tiene que refrescar la página
                 this.getTasks();
+                // Notificar al usuario mediante la librería Toastr.js de que la operación de eliminación fue correcta
+                toastr.success(
+                    response.data.message,
+                    "Información del sistema"
+                );
             });
         }
     },

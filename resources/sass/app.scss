@@ -4,6 +4,9 @@
 // Variables
 @import 'variables';
 
+// Estilos de la aplicación principal
+@import 'style';
+
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
@@ -20,3 +23,6 @@
 @import '~@fortawesome/fontawesome-free/scss/brands';
 @import '~@fortawesome/fontawesome-free/scss/solid';
 @import '~@fortawesome/fontawesome-free/scss/regular';
+
+// Toastr
+@import '~toastr/build/toastr.css'
