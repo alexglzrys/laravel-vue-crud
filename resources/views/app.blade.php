@@ -14,7 +14,7 @@
        
     </head>
     <body>
-        <!-- Plantilla perteneciente a la aplicación Vue - FrontEnd -->
+        <!-- Plantilla principal de nuestra aplicación Vue - FrontEnd -->
         <div class="container" id="app">
            @yield('content')
         </div>

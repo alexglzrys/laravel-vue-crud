@@ -44,24 +44,24 @@ Vue.component(
  *
  * De lo contario, los cambios generados jamás se inyectarán en los archivos finales (public/js  --- public/css)
  */
-const URL_USERS = "https://jsonplaceholder.typicode.com/users";
 
 const app = new Vue({
-    el: "#app",
+    el: "#vue-crud",
     data() {
         return {
-            items: []
+            tasks: []
         };
     },
     methods: {
-        getUsers() {
-            axios.get(URL_USERS).then(response => {
-                this.items = response.data;
+        getTasks() {
+            const URL = "/tasks";
+            axios.get(URL).then(response => {
+                this.tasks = response.data;
             });
         }
     },
     created() {
-        this.getUsers();
+        this.getTasks();
     }
 });
 

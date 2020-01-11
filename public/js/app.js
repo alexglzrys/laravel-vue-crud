@@ -49562,25 +49562,25 @@ Vue.component("example-component", __webpack_require__(/*! ./components/ExampleC
  * De lo contario, los cambios generados jamás se inyectarán en los archivos finales (public/js  --- public/css)
  */
 
-var URL_USERS = "https://jsonplaceholder.typicode.com/users";
 var app = new Vue({
-  el: "#app",
+  el: "#vue-crud",
   data: function data() {
     return {
-      items: []
+      tasks: []
     };
   },
   methods: {
-    getUsers: function getUsers() {
+    getTasks: function getTasks() {
       var _this = this;
 
-      axios.get(URL_USERS).then(function (response) {
-        _this.items = response.data;
+      var URL = "/tasks";
+      axios.get(URL).then(function (response) {
+        _this.tasks = response.data;
       });
     }
   },
   created: function created() {
-    this.getUsers();
+    this.getTasks();
   }
 });
 /**

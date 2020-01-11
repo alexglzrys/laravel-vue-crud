@@ -1,7 +1,8 @@
-<!-- Extender la plantilla Vue de nuestra aplicación principal -->
+<!-- Extender la plantilla principal de Vue -->
 @extends('app')
 
 @section('content')
+  <!-- Esta plantilla pertenece a una instancia de Vue (aplicación) que hace referencia al ID #vue-crud  -->
   <div id="vue-crud" class="row">
     <div class="col-sm-12">
       <div class="jumbotron">
@@ -11,25 +12,25 @@
     </div>
     <div class="col-sm-7">
       <table class="table table-hover table-striped">
-        <thead>
+        <thead class="thead-dark">
           <tr>
             <th>ID</th>
-            <th>Tarea</th>
+            <th>Nombre de la Tarea</th>
             <th colspan="2">&nbsp;</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td width="10px">1</td>
-            <td>Correr 10km</td>
+          <tr v-for="task in tasks" :key="task.id">
+            <td width="10px">@{{ task.id }}</td>
+            <td>@{{ task.keep }}</td>
             <td width="10px"><a href="#" class="btn btn-warning btn-sm">Editar</a></td>
             <td width="10px"><a href="#" class="btn btn-danger btn-sm">Eliminar</a></td>
           </tr>
         </tbody>
       </table>
     </div>
-    <div class="col-sm-5">
-      <pre></pre>
+    <div class="col-sm-5 bg-secondary">
+      <pre class="text-white">@{{ $data }}</pre>
     </div>
   </div>
 @endsection
