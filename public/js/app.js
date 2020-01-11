@@ -49540,15 +49540,40 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-Vue.component('example-component', __webpack_require__(/*! ./components/ExampleComponent.vue */ "./resources/js/components/ExampleComponent.vue")["default"]);
+Vue.component("example-component", __webpack_require__(/*! ./components/ExampleComponent.vue */ "./resources/js/components/ExampleComponent.vue")["default"]);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+/**
+ * Nota: Siempre es necesario compilar los archivos JS/VUE/CSS/SCSS con laravel mix.
+ * npm run dev || npm run watch
+ *
+ * De lo contario, los cambios generados jamás se inyectarán en los archivos finales (public/js  --- public/css)
+ */
+
+var URL_USERS = "https://jsonplaceholder.typicode.com/users";
 var app = new Vue({
-  el: '#app'
+  el: "#app",
+  data: function data() {
+    return {
+      items: []
+    };
+  },
+  methods: {
+    getUsers: function getUsers() {
+      var _this = this;
+
+      axios.get(URL_USERS).then(function (response) {
+        _this.items = response.data;
+      });
+    }
+  },
+  created: function created() {
+    this.getUsers();
+  }
 });
 
 /***/ }),
