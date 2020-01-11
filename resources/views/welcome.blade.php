@@ -16,7 +16,8 @@
     <body>
         <div class="container" id="app">
             <div class="jumbotron">
-                <h1 class="display-4">Laravel con VueJS y Axios</h1>
+                <h1 class="display-4">
+                    <i class="fa fa-camera"></i> Laravel con VueJS y Axios</h1>
                 <p class="lead">Ejemplo de conexión a una API de terceros llamada jsonplaceholder</p>
             </div>
             <div class="row">
@@ -24,7 +25,7 @@
                     <h2>Listado de Elementos</h2>
                     <ul class="list-group">
                         <li v-for="item in items" :key="item.id" class="list-group-item">
-                            @{{ item.name }}
+                            <i class="fa fa-user"></i> @{{ item.name }}
                         </li>
                     </ul>
                 </div>
