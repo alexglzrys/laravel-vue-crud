@@ -4,6 +4,14 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
+/**
+ * Comando artisan
+ * php artisan make:model Task -m
+ * 
+ * -m: flag para indicar a artisan que genere automaticamente la migración para el modelo dado
+ * 
+ */
+
 class CreateTasksTable extends Migration
 {
     /**
