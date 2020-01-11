@@ -7,6 +7,14 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
+/**
+  NOTA: Si se desea agregar una librería de CSS al proyecto mediante laravel mix, es necesario..
+  1 instalarlo mediante npm con el flag -D
+  2 importarla desde este mismo archivo.
+  
+  La razón es que en el archivo webpack.mix.js se declara que este archivo es el que incluye todo el CSS
+  que se debe compilar para que el frontend del proyecto funcione, y el resultado se deposita en public/css/app.css
+*/
 // Fontawesome
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
 @import '~@fortawesome/fontawesome-free/scss/brands';
