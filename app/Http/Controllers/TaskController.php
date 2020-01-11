@@ -70,6 +70,10 @@ class TaskController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $task = Task::findOrFail($id);
+        $task->delete();
+        return response()->json([
+            'message' => 'El registro con id '. $task->id .' fue eliminado correctamente',
+        ]);
     }
 }

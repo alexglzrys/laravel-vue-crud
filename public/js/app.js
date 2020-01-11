@@ -49570,12 +49570,25 @@ var app = new Vue({
     };
   },
   methods: {
+    // Recuperar todos los registros del tipo Task -- Controller@index
     getTasks: function getTasks() {
       var _this = this;
 
       var URL = "/tasks";
       axios.get(URL).then(function (response) {
         _this.tasks = response.data;
+      });
+    },
+    // Eliminar un registro del tipo Task --- Controller@destroy
+    deleteTask: function deleteTask(task) {
+      var _this2 = this;
+
+      var URL = "/tasks/".concat(task.id);
+      axios["delete"](URL).then(function (response) {
+        console.log(response.data.message); // Recuperar nuevamente todas las tareas registradas en el backend para mostrarlas en la vista.
+        // En caso contrario, el usuario tiene que refrescar la página
+
+        _this2.getTasks();
       });
     }
   },

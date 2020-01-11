@@ -18,6 +18,7 @@ class TasksTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(Task::class)->times(5)->create();
+        // Generar 35 registros falsos
+        factory(Task::class)->times(35)->create();
     }
 }

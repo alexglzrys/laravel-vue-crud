@@ -53,10 +53,22 @@ const app = new Vue({
         };
     },
     methods: {
+        // Recuperar todos los registros del tipo Task -- Controller@index
         getTasks() {
             const URL = "/tasks";
             axios.get(URL).then(response => {
                 this.tasks = response.data;
+            });
+        },
+
+        // Eliminar un registro del tipo Task --- Controller@destroy
+        deleteTask(task) {
+            const URL = `/tasks/${task.id}`;
+            axios.delete(URL).then(response => {
+                console.log(response.data.message);
+                // Recuperar nuevamente todas las tareas registradas en el backend para mostrarlas en la vista.
+                // En caso contrario, el usuario tiene que refrescar la página
+                this.getTasks();
             });
         }
     },
