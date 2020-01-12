@@ -50128,6 +50128,25 @@ var app = new Vue({
       this.fillTask.keep = task.keep; // Mostrar el modal con el formulario de edición (los inputs ya estarían rellenados con la info a editar)
 
       $("#modal-edit").modal("show");
+    },
+    // Actualizar un registro del tipo Task --- Controller@update
+    updateTask: function updateTask(id) {
+      var _this4 = this;
+
+      var URL = "/tasks/".concat(id);
+      axios.put(URL, this.fillTask).then(function (response) {
+        _this4.getTasks();
+
+        _this4.fillTask = {
+          id: "",
+          keep: ""
+        };
+        _this4.errors = [], $("#modal-edit").modal("hide");
+        toastr.success(response.data.message, "Información del sistema");
+      })["catch"](function (error) {
+        console.log(error.response);
+        _this4.errors = error.response.data;
+      });
     }
   },
   created: function created() {
