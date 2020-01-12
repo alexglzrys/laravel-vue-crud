@@ -16,10 +16,10 @@ class TaskController extends Controller
      */
     public function index()
     {
-        // Para saber que número de pagina entregar, laravel verifica el valor pasado en la cadena de consulta ?page, la cual hace de forma implicita. (No es necesario inyectar el objeto Response)
-        
+        // Para saber que número de pagina entregar, laravel verifica el valor pasado en la cadena de consulta ?page, la cual hace de forma implicita en el métood paginate. (No es necesario inyectar el objeto Response $request)
+
         // Paginar los resultados y mandarlos al FrontEnd
-        $tasks = Task::orderBy('id', 'DESC')->paginate(4); 
+        $tasks = Task::orderBy('id', 'DESC')->paginate(3); 
         // Laravel automáticamente convierte a JSON los arreglos enviados como respuesta
         return [
             // Información meta de paginación

@@ -50079,7 +50079,9 @@ var app = new Vue({
         last_page: 0,
         from: 0,
         to: 0
-      }
+      },
+      // Modelo que contiene la cantidad de controles a mostrar antes y después de la página actual en el paginador
+      offset: 2
     };
   },
   methods: {
@@ -50175,6 +50177,41 @@ var app = new Vue({
     // Cambiar o navegar entre páginas
     changePage: function changePage(page) {
       this.getTasks(page);
+    }
+  },
+  computed: {
+    // Obtener la cantidad de páginas necesarias para navegar entre registros
+    // Evitar que el paginador se desborde en la página, debido a la cantidad de controles.
+    pageNumbers: function pageNumbers() {
+      // Si no hay resultados, no es necesario mostrar los controles dinámicos del paginador
+      if (this.pagination.to == 0) {
+        return [];
+      } // Evitar que los controles pertenecientes a los números de página desborden el diseño
+      // cantidad de controles anteriores a mostrar, antes de la página actual (relleno)
+
+
+      var controls_prev = this.pagination.current_page - this.offset;
+
+      if (controls_prev < 1) {
+        controls_prev = 1;
+      } // cantidad de controles posteriores a mostrar después de la página actual (relleno)
+
+
+      var controls_next = this.pagination.current_page + this.offset;
+
+      if (controls_next >= this.pagination.last_page) {
+        controls_next = this.pagination.last_page;
+      } // Generar el arreglo con la cantidad de controles dinámicos necesarios a mostrar
+
+
+      var controls_total = []; // Empujar los números de paginación... [prev, .., currentPage, .., next]
+
+      while (controls_prev <= controls_next) {
+        controls_total.push(controls_prev);
+        controls_prev++;
+      }
+
+      return controls_total;
     }
   },
   created: function created() {

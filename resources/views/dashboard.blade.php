@@ -7,7 +7,7 @@
     <div class="col-sm-12">
       <div class="jumbotron">
         <h1 class="display-4"><i class="fas fa-database"></i> CRUD Laravel y Vuejs</h1>
-        <p class="lead">Conexión a base de datos y solicitud de servicios a través de Axios</p>
+        <p class="lead">Conexión a base de datos y solicitud de servicios a través de Axios con paginación.</p>
       </div>
     </div>
     <div class="col-sm-7">
@@ -47,8 +47,11 @@
           <li class="page-item" v-if="pagination.current_page > 1">
             <a href="#" class="page-link" @click.prevent="changePage(pagination.current_page - 1)">Anterior</a>
           </li>
-          <!-- Numeración dinámica -->
-          <li class="page-item" v-for="item in pagination.last_page" :class="[item == pagination.current_page ? 'active' : '']">
+          <!-- 
+            Numeración dinámica
+            pageNumbers es una propiedad computada que evita el desbordamiento del paginador 
+          -->
+          <li class="page-item" v-for="item in pageNumbers" :class="[item == pagination.current_page ? 'active' : '']">
           <a href="#" class="page-link" @click.prevent="changePage(item)">@{{ item }}</a>
           </li>
           <!--  -->
