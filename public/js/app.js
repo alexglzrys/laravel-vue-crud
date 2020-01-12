@@ -50065,7 +50065,12 @@ var app = new Vue({
     return {
       tasks: [],
       keep: null,
-      errors: []
+      errors: [],
+      // Modelo que contiene una copia de los datos durante el proceso de edición (modal form)
+      fillTask: {
+        id: "",
+        keep: ""
+      }
     };
   },
   methods: {
@@ -50115,6 +50120,14 @@ var app = new Vue({
         console.log(error.response);
         _this3.errors = error.response.data.errors;
       });
+    },
+    // Editar un registro de tipo Task
+    editTask: function editTask(task) {
+      // Llenar el modelo con los datos de la tarea a editar
+      this.fillTask.id = task.id;
+      this.fillTask.keep = task.keep; // Mostrar el modal con el formulario de edición (los inputs ya estarían rellenados con la info a editar)
+
+      $("#modal-edit").modal("show");
     }
   },
   created: function created() {

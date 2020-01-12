@@ -25,7 +25,9 @@
           <tr v-for="task in tasks" :key="task.id">
             <td width="10px">@{{ task.id }}</td>
             <td>@{{ task.keep }}</td>
-            <td width="10px"><a href="#" class="btn btn-warning btn-sm">Editar</a></td>
+            <td width="10px">
+              <a href="#" @click.prevent="editTask(task)" class="btn btn-warning btn-sm">Editar</a>
+            </td>
             <td width="10px">
               <a href="#" @click.prevent="deleteTask(task)" class="btn btn-danger btn-sm">Eliminar</a>
             </td>
@@ -39,5 +41,6 @@
 
     <!-- Incluir archivos parciales de nuestra aplicación Vue -->
     @include('partials.create')
+    @include('partials.edit')
   </div>
 @endsection
