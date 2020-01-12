@@ -15,4 +15,5 @@ Route::get('/', function () {
     return view('dashboard');
 });
 
-Route::resource('tasks', 'TaskController', ['except' => 'show']);
+// Trabajar con CRUD mediante Laravel y VueJS, generalmente no requieren de vistas de formulario renderizadas por el servidor. 
+Route::resource('tasks', 'TaskController', ['except' => ['show', 'create', 'edit']]);

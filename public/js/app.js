@@ -50063,7 +50063,9 @@ var app = new Vue({
   el: "#vue-crud",
   data: function data() {
     return {
-      tasks: []
+      tasks: [],
+      keep: null,
+      errors: []
     };
   },
   methods: {
@@ -50088,6 +50090,30 @@ var app = new Vue({
 
 
         toastr.success(response.data.message, "Información del sistema");
+      });
+    },
+    // Grabar registro de tipo Task --- Controller@store
+    createTask: function createTask() {
+      var _this3 = this;
+
+      var URL = "/tasks";
+      var data = {
+        keep: this.keep
+      };
+      axios.post(URL, data).then(function (response) {
+        // Cargar nuevamente el listado de tareas registradas en la base de datos
+        _this3.getTasks();
+
+        _this3.keep = null;
+        _this3.errors = []; // Cerrar el modal automáticamente
+
+        $("#modal-create").modal("hide"); // Notificar al usuario acerca del exito de la operación
+
+        toastr.success(response.data.message, "Información del sistema");
+      })["catch"](function (error) {
+        // Mostrar el error o conjunto de errores al usuario
+        console.log(error.response);
+        _this3.errors = error.response.data.errors;
       });
     }
   },

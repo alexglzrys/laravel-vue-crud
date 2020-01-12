@@ -1,5 +1,5 @@
 <!-- Modal que contiene el formulario de registro de tareas  -->
-<form method="POST">
+<form @submit.prevent="createTask">
   <div class="modal fade" tabindex="-1" role="dialog" id="modal-create">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -12,7 +12,8 @@
         <div class="modal-body">
           <div class="form-group">
             <label for="keep">Nombre de la tarea</label>
-            <input type="text" name="kepp" class="form-control" id="keep">
+            <input type="text" v-model="keep" name="kepp" class="form-control" id="keep">
+            <span v-for="error in errors" class="text-danger">@{{ error }}</span>
           </div>
         </div>
         <div class="modal-footer">
