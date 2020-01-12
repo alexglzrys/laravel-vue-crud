@@ -14,9 +14,11 @@
       <table class="table table-hover table-striped">
         <thead class="thead-dark">
           <tr>
-            <th>ID</th>
-            <th>Nombre de la Tarea</th>
-            <th colspan="2">&nbsp;</th>
+            <th class="align-middle">ID</th>
+            <th class="align-middle">Nombre de la Tarea</th>
+            <th colspan="2">
+              <a href="#" class="btn btn-primary btn-block" data-toggle="modal" data-target="#modal-create">Nueva Tarea</a>
+            </th>
           </tr>
         </thead>
         <tbody>
@@ -34,5 +36,8 @@
     <div class="col-sm-5 bg-secondary">
       <pre class="text-white">@{{ $data }}</pre>
     </div>
+
+    <!-- Incluir archivos parciales de nuestra aplicación Vue -->
+    @include('partials.create')
   </div>
 @endsection
