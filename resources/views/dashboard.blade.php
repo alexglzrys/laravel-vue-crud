@@ -42,18 +42,18 @@
       </table>
 
       <!-- Controles de Paginación -->
-      <nav>
+      <nav class="d-flex flex-row justify-content-center">
         <ul class="pagination">
-          <li class="page-item">
-            <a href="#" class="page-link">Anterior</a>
+          <li class="page-item" v-if="pagination.current_page > 1">
+            <a href="#" class="page-link" @click.prevent="changePage(pagination.current_page - 1)">Anterior</a>
           </li>
           <!-- Numeración dinámica -->
-          <li class="page-item"><a href="#" class="page-link">1</a></li>
-          <li class="page-item active"><a href="#" class="page-link">2</a></li>
-          <li class="page-item"><a href="#" class="page-link">3</a></li>
+          <li class="page-item" v-for="item in pagination.last_page" :class="[item == pagination.current_page ? 'active' : '']">
+          <a href="#" class="page-link" @click.prevent="changePage(item)">@{{ item }}</a>
+          </li>
           <!--  -->
-          <li class="page-item">
-            <a href="#" class="page-link">Siguiente</a>
+          <li class="page-item" v-if="pagination.current_page < pagination.last_page">
+            <a href="#" class="page-link" @click.prevent="changePage(pagination.current_page + 1)">Siguiente</a>
           </li>
         </ul>
       </nav>

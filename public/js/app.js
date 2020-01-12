@@ -50070,6 +50070,15 @@ var app = new Vue({
       fillTask: {
         id: "",
         keep: ""
+      },
+      // Modelo que contiene toda la información meta de paginación
+      pagination: {
+        total: 0,
+        current_page: 0,
+        per_page: 0,
+        last_page: 0,
+        from: 0,
+        to: 0
       }
     };
   },
@@ -50078,10 +50087,13 @@ var app = new Vue({
     getTasks: function getTasks() {
       var _this = this;
 
-      var URL = "/tasks";
+      var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
+      // El backend entrega resultados paginados, por tanto es necesario indicar el número de página a entregar
+      var URL = "/tasks/?page=".concat(page);
       axios.get(URL).then(function (response) {
         // La respuesta del Backend es un JSON complejo cuyos datos se encuentran en tasks.data
         _this.tasks = response.data.tasks.data;
+        _this.pagination = response.data.pagination;
         console.log(response.data);
       });
     },
@@ -50155,6 +50167,14 @@ var app = new Vue({
         console.log(error.response);
         _this4.errors = error.response.data.errors;
       });
+    },
+
+    /**
+     * Metodos para la gestión de Paginación
+     */
+    // Cambiar o navegar entre páginas
+    changePage: function changePage(page) {
+      this.getTasks(page);
     }
   },
   created: function created() {
