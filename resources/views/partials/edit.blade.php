@@ -4,7 +4,7 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">Editar</h5>
+          <h5 class="modal-title"><i class="fas fa-marker"></i> Editar</h5>
           <button class="close" data-dismiss="modal">
             <span>&times;</span>
           </button>
@@ -17,7 +17,9 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button type="submit" class="btn btn-primary">Actualizar</button>
+          <button type="submit" class="btn btn-primary">
+            <i class="fas fa-save"></i> Actualizar
+          </button>
         </div>
       </div>
     </div>

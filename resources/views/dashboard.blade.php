@@ -6,7 +6,7 @@
   <div id="vue-crud" class="row">
     <div class="col-sm-12">
       <div class="jumbotron">
-        <h1 class="display-4">CRUD Laravel y Vuejs</h1>
+        <h1 class="display-4"><i class="fas fa-database"></i> CRUD Laravel y Vuejs</h1>
         <p class="lead">Conexión a base de datos y solicitud de servicios a través de Axios</p>
       </div>
     </div>
@@ -17,19 +17,25 @@
             <th class="align-middle">ID</th>
             <th class="align-middle">Nombre de la Tarea</th>
             <th colspan="2">
-              <a href="#" class="btn btn-primary btn-block" data-toggle="modal" data-target="#modal-create">Nueva Tarea</a>
+              <a href="#" class="btn btn-primary btn-block" data-toggle="modal" data-target="#modal-create">
+                <i class="fas fa-plus-circle"></i> Nueva Tarea
+              </a>
             </th>
           </tr>
         </thead>
         <tbody>
           <tr v-for="task in tasks" :key="task.id">
-            <td width="10px">@{{ task.id }}</td>
+            <td width="20px">@{{ task.id }}</td>
             <td>@{{ task.keep }}</td>
-            <td width="10px">
-              <a href="#" @click.prevent="editTask(task)" class="btn btn-warning btn-sm">Editar</a>
+            <td width="110px">
+              <a href="#" @click.prevent="editTask(task)" class="btn btn-warning btn-sm btn-block">
+                <i class="fas fa-edit"></i> Editar
+              </a>
             </td>
-            <td width="10px">
-              <a href="#" @click.prevent="deleteTask(task)" class="btn btn-danger btn-sm">Eliminar</a>
+            <td width="110px">
+              <a href="#" @click.prevent="deleteTask(task)" class="btn btn-danger btn-sm btn-block">
+                <i class="fas fa-trash"></i> Eliminar
+              </a>
             </td>
           </tr>
         </tbody>
