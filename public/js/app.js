@@ -50135,17 +50135,23 @@ var app = new Vue({
 
       var URL = "/tasks/".concat(id);
       axios.put(URL, this.fillTask).then(function (response) {
-        _this4.getTasks();
+        // Solicitar las las tareas disponibles en la base de datos
+        _this4.getTasks(); // Resetear el modelo de edición de tarea
+
 
         _this4.fillTask = {
           id: "",
           keep: ""
-        };
-        _this4.errors = [], $("#modal-edit").modal("hide");
+        }; // Resetear los posibles errores
+
+        _this4.errors = []; // Ocultar el modal de edición de tareas
+
+        $("#modal-edit").modal("hide"); // Mostrar feedback al usuario
+
         toastr.success(response.data.message, "Información del sistema");
       })["catch"](function (error) {
         console.log(error.response);
-        _this4.errors = error.response.data;
+        _this4.errors = error.response.data.errors;
       });
     }
   },

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\TaskCreateRequest;
+use App\Http\Requests\TaskUpdateRequest;
 use App\Task;
 use Illuminate\Http\Request;
 
@@ -41,9 +42,13 @@ class TaskController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(TaskUpdateRequest $request, $id)
     {
-        //
+        // Buscar la tarea y actualizarla con la data que viaja en el cuerpo de la petición
+        Task::findOrFail($id)->update($request->all());
+        return response()->json([
+            'message' => 'Registro con ID ' . $id . ' actualizado satisfactoriamente en el sistema'
+        ]);
     }
 
     /**

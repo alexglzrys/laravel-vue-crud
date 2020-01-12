@@ -127,12 +127,18 @@ const app = new Vue({
             axios
                 .put(URL, this.fillTask)
                 .then(response => {
+                    // Solicitar las las tareas disponibles en la base de datos
                     this.getTasks();
+                    // Resetear el modelo de edición de tarea
                     this.fillTask = {
                         id: "",
                         keep: ""
                     };
-                    (this.errors = []), $("#modal-edit").modal("hide");
+                    // Resetear los posibles errores
+                    this.errors = [];
+                    // Ocultar el modal de edición de tareas
+                    $("#modal-edit").modal("hide");
+                    // Mostrar feedback al usuario
                     toastr.success(
                         response.data.message,
                         "Información del sistema"
@@ -140,7 +146,7 @@ const app = new Vue({
                 })
                 .catch(error => {
                     console.log(error.response);
-                    this.errors = error.response.data;
+                    this.errors = error.response.data.errors;
                 });
         }
     },
