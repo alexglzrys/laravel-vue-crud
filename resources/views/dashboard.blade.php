@@ -40,6 +40,24 @@
           </tr>
         </tbody>
       </table>
+
+      <!-- Controles de Paginación -->
+      <nav>
+        <ul class="pagination">
+          <li class="page-item">
+            <a href="#" class="page-link">Anterior</a>
+          </li>
+          <!-- Numeración dinámica -->
+          <li class="page-item"><a href="#" class="page-link">1</a></li>
+          <li class="page-item active"><a href="#" class="page-link">2</a></li>
+          <li class="page-item"><a href="#" class="page-link">3</a></li>
+          <!--  -->
+          <li class="page-item">
+            <a href="#" class="page-link">Siguiente</a>
+          </li>
+        </ul>
+      </nav>
+
     </div>
     <div class="col-sm-5 bg-secondary">
       <pre class="text-white">@{{ $data }}</pre>
