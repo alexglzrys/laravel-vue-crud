@@ -16,8 +16,22 @@ class TaskController extends Controller
      */
     public function index()
     {
-        $tasks = Task::orderBy('id', 'DESC')->get();
-        return $tasks;
+        // Paginar los resultados y mandarlos al FrontEnd
+        $tasks = Task::orderBy('id', 'DESC')->paginate(4); 
+        // Laravel automáticamente convierte a JSON los arreglos enviados como respuesta
+        return [
+            // Información meta de paginación
+            'paginate' => [
+                'total'         => $tasks->total(), 
+                'current_page'  => $tasks->currentPage(),
+                'per_page'      => $tasks->perPage(),
+                'last_page'     => $tasks->lastPage(),
+                'from'          => $tasks->firstItem(),
+                'to'            => $tasks->lastPage()
+            ],
+            // Data
+            'tasks' => $tasks
+        ];
     }
 
     /**

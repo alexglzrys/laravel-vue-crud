@@ -65,7 +65,9 @@ const app = new Vue({
         getTasks() {
             const URL = "/tasks";
             axios.get(URL).then(response => {
-                this.tasks = response.data;
+                // La respuesta del Backend es un JSON complejo cuyos datos se encuentran en tasks.data
+                this.tasks = response.data.tasks.data;
+                console.log(response.data);
             });
         },
 

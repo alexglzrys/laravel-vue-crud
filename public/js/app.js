@@ -50080,7 +50080,9 @@ var app = new Vue({
 
       var URL = "/tasks";
       axios.get(URL).then(function (response) {
-        _this.tasks = response.data;
+        // La respuesta del Backend es un JSON complejo cuyos datos se encuentran en tasks.data
+        _this.tasks = response.data.tasks.data;
+        console.log(response.data);
       });
     },
     // Eliminar un registro del tipo Task --- Controller@destroy
